@@ -30,9 +30,18 @@ app.post('/forismatic/:id?', function (req, res) {
         }
     );
 
-})
-app.get('/js/*.js', function (req, res) {
-    res.sendfile(__dirname + '/public/' + req.url)
+});
+
+app.get('/public/assets/*', function (req, res) {
+    res.sendfile(__dirname + req.url)
+});
+
+app.post('*', function (req, res) {
+    res.status(404).send('404');
+});
+
+app.get('*', function (req, res) {
+    res.status(404).send('404');
 });
 
 app.listen(3000, function () {

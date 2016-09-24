@@ -3,48 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <title>ReactApp</title>
-    <script src="js/react-with-addons.min.js"></script>
-    <script src="js/react-dom.min.js"></script>
-    <script src="js/browser.min.js"></script>
+    <script src="/public/assets/js/src/vendor/react.js"></script>
+    <script src="/public/assets/js/src/vendor/react-dom.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+
 </head>
 <body>
 <div id="container"></div>
-<script type="text/babel">
-    var QuoteBlock = React.createClass({
-        getInitialState: function () {
-            return {quote: 'Click button!'};
-        },
-        get: function () {
-            $.ajax({
-                url: '/forismatic/',
-                type: 'POST',
-                dataType: 'json',
-                cache: false,
-                success: function (data) {
-                    this.handleChange(data.answer);
-                }.bind(this),
-                error: function (xhr, status, err) {
-                    console.error(status);
-                }
-            });
-        },
-        handleChange: function (event) {
-            this.setState({quote: event});
-        },
-        render: function () {
-            var quote = this.state.quote;
-            return <div><p>{quote}</p>
-                <button onClick={this.get.bind(this)}>Get</button>
-            </div>
-        }
-    });
-
-    ReactDOM.render(
-            <QuoteBlock />,
-            document.getElementById('container')
-    );
-
-</script>
+<script src="/public/assets/js/src/babel/main.js" type="text/javascript"></script>
 </body>
 </html>
