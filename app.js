@@ -1,9 +1,16 @@
 var APIService = require('./develop/apiKey');
 var API = new APIService();
-
+var fs = require('fs');
+var http = require('http');
+var https = require('https');
+var privateKey = fs.readFileSync('ssl/localhost.key', 'utf8');
+var certificate = fs.readFileSync('ssl/localhost.crt', 'utf8');
 var express = require('express');
 var request = require('request');
 var app = express();
+var credentials = {key: privateKey, cert: certificate};
+var httpServer = http.createServer(app);
+var httpsServer = https.createServer(credentials, app);
 
 app.get('/', function (req, res) {
     res.sendfile(__dirname + '/public/index.html')
@@ -42,6 +49,15 @@ app.post('/forismatic/:id?', function (req, res) {
 
 });
 
+app.post('/github/:login?', function (req, res) {
+    var login = req.params.login || 'pxyup';
+    request.get('https://api.github.com/users/' + login)
+        .on('response', function (response) {
+            res.json(response);
+        });
+});
+
+
 app.get('/public/assets/*', function (req, res) {
     res.sendfile(__dirname + req.url)
 });
@@ -54,9 +70,8 @@ app.get('*', function (req, res) {
     res.status(404).send('404');
 });
 
-app.listen(3000, function () {
-    console.log('App run!');
-});
+httpServer.listen(8080);
+httpsServer.listen(8443);
 
 function randomInteger(min, max) {
     var rand = min + Math.random() * (max - min)

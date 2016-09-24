@@ -2,7 +2,7 @@
   "name": "ReactApp",
   "version": "0.0.1",
   "scripts": {
-    "start": "gulp default && node app &"
+    "start": "gulp default && gulp scripts && node app"
   },
   "dependencies": {
     "express": "3.5.1",
@@ -11,6 +11,7 @@
     "request": "^2.75.0",
     "gulp": "^3.9.0",
     "gulp-babel": "^5.2.1",
-    "gulp-react": "latest"
+    "gulp-react": "latest",
+    "gulp-concat": "latest"
   }
 }
