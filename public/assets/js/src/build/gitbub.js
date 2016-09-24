@@ -36,7 +36,8 @@ var GitHub = React.createClass({displayName: "GitHub",
             React.createElement("div", {className: "card-block"}, 
 
                 React.createElement("h4", {className: "card-title"}, answer.login), 
-                React.createElement("h6", {className: "card-subtitle text-muted"}, answer.name)
+                React.createElement("h6", {className: "card-subtitle text-muted"}, answer.name), 
+                React.createElement("h6", {className: "card-subtitle text-muted"}, answer.bio)
             ), 
             React.createElement("img", {src: answer.avatar_url, className: "img-circle", alt: answer.name}), 
             React.createElement("div", {className: "card-block"}, 

@@ -37,6 +37,7 @@ var GitHub = React.createClass({
 
                 <h4 className="card-title">{answer.login}</h4>
                 <h6 className="card-subtitle text-muted">{answer.name}</h6>
+                <h6 className="card-subtitle text-muted">{answer.bio}</h6>
             </div>
             <img src={answer.avatar_url} className="img-circle" alt={answer.name}/>
             <div className="card-block">
