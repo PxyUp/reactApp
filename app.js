@@ -23,7 +23,17 @@ app.post('/forismatic/:id?', function (req, res) {
         },
         function (error, response, body) {
             if (!error && response.statusCode == 200) {
-                res.send({err: false, answer: JSON.parse(response.body).quoteText})
+                var answer;
+                try {
+                    answer = JSON.parse(response.body).quoteText
+                }
+                catch (e) {
+                    answer = 'Ошибка'
+                }
+                finally {
+                    res.send({err: false, answer: answer});
+                }
+
             } else {
                 res.json({err: true})
             }
