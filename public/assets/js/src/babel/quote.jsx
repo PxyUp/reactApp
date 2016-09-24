@@ -12,7 +12,7 @@ var QuoteBlock = React.createClass({
                 this.handleChange(data.answer);
             }.bind(this),
             error: function (xhr, status, err) {
-                console.error(status);
+                this.handleChange(err);
             }
         });
     },
