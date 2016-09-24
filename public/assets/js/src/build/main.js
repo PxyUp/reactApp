@@ -1,6 +1,6 @@
 var QuoteBlock = React.createClass({displayName: "QuoteBlock",
     getInitialState: function () {
-        return {quote: 'Click button!'};
+        return {quote: 'Click button!', author: ''};
     },
     get: function () {
         $.ajax({
@@ -17,11 +17,14 @@ var QuoteBlock = React.createClass({displayName: "QuoteBlock",
         });
     },
     handleChange: function (event) {
-        this.setState({quote: event});
+        this.setState({quote: event.quoteText, author: event.quoteAuthor});
     },
     render: function () {
         var quote = this.state.quote;
-        return React.createElement("div", null, React.createElement("p", null, quote), 
+        var author = this.state.author;
+        return React.createElement("div", null, 
+            React.createElement("p", null, quote), 
+            React.createElement("p", null, "@ ", author), 
             React.createElement("button", {onClick: this.get}, "Get")
         )
     }

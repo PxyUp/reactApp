@@ -1,6 +1,6 @@
 var QuoteBlock = React.createClass({
     getInitialState: function () {
-        return {quote: 'Click button!'};
+        return {quote: 'Click button!', author: ''};
     },
     get: function () {
         $.ajax({
@@ -17,11 +17,14 @@ var QuoteBlock = React.createClass({
         });
     },
     handleChange: function (event) {
-        this.setState({quote: event});
+        this.setState({quote: event.quoteText, author: event.quoteAuthor});
     },
     render: function () {
         var quote = this.state.quote;
-        return <div><p>{quote}</p>
+        var author = this.state.author;
+        return <div>
+            <p>{quote}</p>
+            <p>@ {author}</p>
             <button onClick={this.get}>Get</button>
         </div>
     }
