@@ -42,7 +42,7 @@ var GitHub = React.createClass({displayName: "GitHub",
             React.createElement("img", {src: answer.avatar_url, className: "img-circle", alt: answer.name}), 
             React.createElement("div", {className: "card-block"}, 
                 React.createElement("p", {className: "card-text"}, answer.company), 
-                React.createElement("a", {href: answer.html_url, className: "card-link"}, "Profile GitHub")
+                React.createElement("a", {href: answer.html_url, target: "_blank", className: "card-link"}, "Profile GitHub")
             )
         )
     }

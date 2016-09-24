@@ -42,7 +42,7 @@ var GitHub = React.createClass({
             <img src={answer.avatar_url} className="img-circle" alt={answer.name}/>
             <div className="card-block">
                 <p className="card-text">{answer.company}</p>
-                <a href={answer.html_url} className="card-link">Profile GitHub</a>
+                <a href={answer.html_url} target="_blank" className="card-link">Profile GitHub</a>
             </div>
         </div>
     }
