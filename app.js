@@ -51,10 +51,20 @@ app.post('/forismatic/:id?', function (req, res) {
 
 app.post('/github/:login?', function (req, res) {
     var login = req.params.login || 'pxyup';
-    request.get('https://api.github.com/users/' + login)
-        .on('response', function (response) {
-            res.json(response);
-        });
+    var options = {
+        url: 'https://api.github.com/users/' + login,
+        headers: {
+            'User-Agent': 'request'
+        }
+    };
+
+    function callback(error, response, body) {
+        if (!error && response.statusCode == 200) {
+            res.json(JSON.parse(body))
+        }
+    };
+    request(options, callback);
+
 });
 
 

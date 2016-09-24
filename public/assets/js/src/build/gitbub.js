@@ -25,19 +25,29 @@ var GitHub = React.createClass({displayName: "GitHub",
     render: function () {
         var login = this.state.login;
         var answer = this.state.answer;
-        return React.createElement("div", null, 
-            React.createElement("input", {value: login, onChange: this.changeLogin, placeholder: "Input login"}), 
-            React.createElement("button", {onClick: this.get}, "Get"), 
-            React.createElement("div", null, 
-                React.createElement("p", null, answer.login), 
-                React.createElement("img", {src: answer.avatar_url, width: "200px", height: "200px"}), 
-                React.createElement("br", null), 
-                React.createElement("a", {href: answer.html_url, target: "_blank"}, "Link")
+        return React.createElement("div", {className: "card"}, 
+            React.createElement("div", {className: "row"}, 
+                React.createElement("div", {className: "form-inline"}, 
+                    React.createElement("input", {type: "text", className: "form-control col-12", value: login, onChange: this.changeLogin, 
+                           placeholder: "Example input"}), 
+                    React.createElement("button", {type: "submit", onClick: this.get, className: "btn btn-primary col-4"}, "Find")
+                )
+            ), 
+            React.createElement("div", {className: "card-block"}, 
+
+                React.createElement("h4", {className: "card-title"}, answer.login), 
+                React.createElement("h6", {className: "card-subtitle text-muted"}, answer.name)
+            ), 
+            React.createElement("img", {src: answer.avatar_url, className: "img-circle", alt: answer.name}), 
+            React.createElement("div", {className: "card-block"}, 
+                React.createElement("p", {className: "card-text"}, answer.company), 
+                React.createElement("a", {href: answer.html_url, className: "card-link"}, "Profile GitHub")
             )
         )
     }
 });
 ReactDOM.render(
-    React.createElement(GitHub, null),
-    document.getElementById('gitbub')
+    React.createElement(GitHub, null)
+    ,
+    document.getElementById('github')
 );

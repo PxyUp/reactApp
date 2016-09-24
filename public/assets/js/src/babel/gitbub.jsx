@@ -25,19 +25,29 @@ var GitHub = React.createClass({
     render: function () {
         var login = this.state.login;
         var answer = this.state.answer;
-        return <div>
-            <input value={login} onChange={this.changeLogin} placeholder="Input login"/>
-            <button onClick={this.get}>Get</button>
-            <div>
-                <p>{answer.login}</p>
-                <img src={answer.avatar_url} width="200px" height="200px"/>
-                <br/>
-                <a href={answer.html_url} target="_blank">Link</a>
+        return <div className="card">
+            <div className="row">
+                <div className="form-inline">
+                    <input type="text" className="form-control col-12" value={login} onChange={this.changeLogin}
+                           placeholder="Example input"/>
+                    <button type="submit" onClick={this.get} className="btn btn-primary col-4">Find</button>
+                </div>
+            </div>
+            <div className="card-block">
+
+                <h4 className="card-title">{answer.login}</h4>
+                <h6 className="card-subtitle text-muted">{answer.name}</h6>
+            </div>
+            <img src={answer.avatar_url} className="img-circle" alt={answer.name}/>
+            <div className="card-block">
+                <p className="card-text">{answer.company}</p>
+                <a href={answer.html_url} className="card-link">Profile GitHub</a>
             </div>
         </div>
     }
 });
 ReactDOM.render(
-    <GitHub />,
-    document.getElementById('gitbub')
+    <GitHub />
+    ,
+    document.getElementById('github')
 );
